@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Categorical Ethos</title>
+    <link>https://example.com/posts/</link>
+    <description>Recent content in Posts on Categorical Ethos</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 07 Jun 2020 19:08:45 +0800</lastBuildDate>
+    
+	<atom:link href="https://example.com/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Eckman-Hilton Argument</title>
+      <link>https://example.com/posts/eckman/</link>
+      <pubDate>Sun, 07 Jun 2020 19:08:45 +0800</pubDate>
+      
+      <guid>https://example.com/posts/eckman/</guid>
+      <description>&lt;h2 id=&#34;headline-1&#34;&gt;
+Proposition
+&lt;/h2&gt;
+&lt;p&gt;
+let \(\circ\), \(\ast\) be 2 unital binary operation, with \(u, v\) their units respectively. If they satisfy the equation
+$$
+(a \circ b) \ast (c \circ d) = (a \ast c) \circ (b \ast d)
+$$
+&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
