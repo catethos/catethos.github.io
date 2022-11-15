@@ -5,9 +5,11 @@ description = ""
 authors = ["catethos <cloverethos@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.10"
 ipykernel = "^6.15.2"
 seaborn = "^0.12.0"
+pymc = "^4.3.0"
+blackjax = "^0.9.6"
 
 [tool.poetry.dev-dependencies]
 

@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Blog Posts",
+    "section": "",
+    "text": "statistic\n\n\n\n\n\n\n\n\n\n\n\nNov 15, 2022\n\n\nCaleb\n\n\n\n\n\n\n  \n\n\n\n\n\n\n\n\n\n\nstatistic\n\n\n\n\n\n\n\n\n\n\n\nSep 12, 2022\n\n\nCaleb\n\n\n\n\n\n\nNo matching items"
+  },
+  {
     "objectID": "posts/20220912_testing.html",
     "href": "posts/20220912_testing.html",
     "title": "Central Limit Theorem - Misconception 1",
@@ -14,10 +21,73 @@
     "text": "About this blog"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Blog Posts",
+    "objectID": "posts/Blog 1.html",
+    "href": "posts/Blog 1.html",
+    "title": "Categorical Ethos",
     "section": "",
-    "text": "statistic\n\n\n\n\n\n\n\n\n\n\n\nSep 12, 2022\n\n\nCaleb\n\n\n\n\n\n\nNo matching items"
+    "text": "#| code-fold: true\ndef f(x: int):\n    return x\n\n\n\\[\nx^2 + y^2 = z^2\n\\] This is blog one that will link to blog2"
+  },
+  {
+    "objectID": "posts/blog2.html",
+    "href": "posts/blog2.html",
+    "title": "Categorical Ethos",
+    "section": "",
+    "text": "lalala"
+  },
+  {
+    "objectID": "posts/Blog 1.html#another-title",
+    "href": "posts/Blog 1.html#another-title",
+    "title": "Categorical Ethos",
+    "section": "Another title",
+    "text": "Another title\n\\[\nx^2 + y^2 = z^2\n\\] This is blog one that will link to blog2"
+  },
+  {
+    "objectID": "posts/another.html",
+    "href": "posts/another.html",
+    "title": "Categorical Ethos",
+    "section": "",
+    "text": "Code\ndef f(x: int):\n    return x\n\n\n\n\n\\[\nx^2 + y^2 = z^2\n\\] This is blog one that will link to blog2"
+  },
+  {
+    "objectID": "posts/another1.html",
+    "href": "posts/another1.html",
+    "title": "Categorical Ethos",
+    "section": "",
+    "text": "#| code-fold: true\ndef f(x: int):\n    return x\n\n\n\\[\nx^2 + y^2 = z^2\n\\] This is blog one that will link to blog2"
+  },
+  {
+    "objectID": "posts/something new.html",
+    "href": "posts/something new.html",
+    "title": "Something New",
+    "section": "",
+    "text": "This is something new\n\n\nCode\ndef f(x: int) -> int:\n    return x + 1\n\n\n\n\n\n\n\ndynamic.png"
+  },
+  {
+    "objectID": "posts/new.html",
+    "href": "posts/new.html",
+    "title": "Something New",
+    "section": "",
+    "text": "This is something new\n\n\nCode\ndef f(x: int) -> int:\n    return x + 1\n\n\n\n\n\n\n\ndynamic.png"
+  },
+  {
+    "objectID": "posts/Another Two.html",
+    "href": "posts/Another Two.html",
+    "title": "Categorical Ethos",
+    "section": "",
+    "text": "Code\nclass object:\n    def __init__(self):\n        pass\n\n\n\nloloo\n\n\\[\nx^2 + y^2=z^2\n\\]"
+  },
+  {
+    "objectID": "posts/Regina I love you.html",
+    "href": "posts/Regina I love you.html",
+    "title": "Categorical Ethos",
+    "section": "",
+    "text": "hhrjthrout\n\n\n\n\nCode\ndef g(x):\n    pass\n\n\n\\[\n\\\\int_0^1 f(x) = 1\n\\]"
+  },
+  {
+    "objectID": "posts/20221115_AB_testing.html",
+    "href": "posts/20221115_AB_testing.html",
+    "title": "A/B Testing From Bayesian Point of View (1)",
+    "section": "",
+    "text": "A classical use-case of A/B tesing is optimizing the click through rate of a e-commerse website given different layout designs.\n\n\n\nDrawing 2022-11-15 14.14.30.excalidraw.png\n\n\nSome common questions we want to answer: - which layout is better ? - how many data should we collect ? - how much better ?\n\n\n\nAssuming layout 2 is better and we generate data according to this assumption. Let’s try to analyze the generated data to recover our assumption.\n\nfrom scipy.stats import bernoulli\n\nsize_1 = 100\nsize_2 = 100\n\n# the \"true\" CTR of both layouts\np_1 = 0.7\np_2 = 0.9\n\npopulation_1 = bernoulli.rvs(p_1, size=size_1)\npopulation_2 = bernoulli.rvs(p_2, size=size_2)\n\n\n\n\nLet’s model the CTR as a beta distribution since it is always between 0 and 1, and assume we know nothing about how the CTR look like and hence uniformly distributed across the interval [0,1]\n\nimport pymc as pm\nimport arviz as az\nimport matplotlib.pyplot as plt\n\naz.style.use(\"fivethirtyeight\")\n\n\nwith pm.Model() as model:\n    ctr1 = pm.Beta(\"ctr1\", alpha=1, beta=1)\n    ctr2 = pm.Beta(\"ctr2\", alpha=1, beta=1)\n    click1 = pm.Binomial(\"click1\", p=ctr1, n=size_1, observed=sum(population_1))\n    click2 = pm.Binomial(\"click2\", p=ctr2, n=size_2, observed=sum(population_2))\n    diff = pm.Deterministic(\"diff\", ctr2-ctr1)\n    t = pm.sample()\n\nAuto-assigning NUTS sampler...\nInitializing NUTS using jitter+adapt_diag...\nMultiprocess sampling (4 chains in 4 jobs)\nNUTS: [ctr1, ctr2]\n\n\n\n\n\n\n\n    \n      \n      100.00% [8000/8000 00:02<00:00 Sampling 4 chains, 0 divergences]\n    \n    \n\n\nSampling 4 chains for 1_000 tune and 1_000 draw iterations (4_000 + 4_000 draws total) took 2 seconds.\n\n\n\nfig, axs = plt.subplots(2, 1, figsize=(7, 7), sharex=True)\naz.plot_posterior(t.posterior[\"ctr1\"], ax=axs[0])\naxs[0].set_title(\"Click Trough Rate (Layout 1)\", fontsize=20)\naz.plot_posterior(t.posterior[\"ctr2\"], ax=axs[1])\naxs[1].set_title(C)\n\nText(0.5, 1.0, 'Click Trough Rate (Layout 2)')\n\n\n\n\n\n\naz.plot_posterior(t, var_names=[\"diff\"])\nplt.title(\"Difference between CTR\", fontsize=20)\n\nText(0.5, 1.0, 'Difference between CTR')"
   }
 ]
